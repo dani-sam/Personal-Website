@@ -456,9 +456,9 @@ section .container {
 }
 
 /*--------------------------------------------------------------
-# Skills
+# Skills(this not wanted)
 --------------------------------------------------------------*/
-.skills .progress {
+/* .skills .progress {
   height: 60px;
   display: block;
   background: none;
@@ -488,8 +488,8 @@ section .container {
   width: 1px;
   height: 10px;
   transition: .9s;
-  background-color: #18d26e;
-}
+  background-color: #d2187b;
+} */
 
 /*--------------------------------------------------------------
 # Interests
