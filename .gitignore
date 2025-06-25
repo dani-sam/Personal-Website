@@ -1,0 +1,23 @@
+# Temp and cache files
+*.log
+.cache/
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+
+
+# Build output (for static site generators or bundlers like Webpack, Hugo, etc.)
+dist/
+build/
+public/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.code-workspace
