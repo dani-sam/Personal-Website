@@ -1,12 +1,3 @@
-/*!
-* Start Bootstrap - Freelancer v7.0.0 (https://startbootstrap.com/theme/freelancer)
-* Copyright 2013-2021 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
-
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -52,18 +43,17 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
-// ====================================================================
-// 🔥 SKILL BAR + % COUNTER ANIMATION
-// ==================================================================== //
 
-// Animate percentage numbers 0 → target
-function animatePercentageNumbers() {
-    const values = document.querySelectorAll(".val");
+// ===================================================================== //
+// 🔥 SKILL BAR ANIMATION + % COUNTER + STAGGER + GLOW
+// ===================================================================== //
 
-    values.forEach(val => {
-        let target = +val.getAttribute("data-target");
+// Count % from 0 → target smoothly
+function animateSkillPercentages() {
+    document.querySelectorAll(".val").forEach(val => {
+        let target = Number(val.dataset.target) || 0;
         let current = 0;
-        let speed = target / 120; // slower or faster count
+        let speed = target / 120;   // lower = slower count
 
         let counter = setInterval(() => {
             current += speed;
@@ -71,33 +61,37 @@ function animatePercentageNumbers() {
                 current = target;
                 clearInterval(counter);
             }
-            val.textContent = Math.floor(current) + "%";
+            val.innerText = Math.floor(current) + "%";
         }, 20);
     });
 }
 
-// Animate skill progress bars
+// Animate bars when section becomes visible
 document.addEventListener("DOMContentLoaded", () => {
-
     const bars = document.querySelectorAll(".progress-bar");
-    const skillsSection = document.querySelector(".skills");
+    const skillSection = document.querySelector(".skills");
+    if (!skillSection || bars.length === 0) return;
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (!entry.isIntersecting) return;
 
-                // Fill bars smoothly
-                bars.forEach(bar => {
-                    bar.style.width = bar.dataset.progress + "%";
-                });
+            // 🔥 Staggered bar animation
+            bars.forEach((bar, i) => {
+                let width = bar.dataset.progress + "%";
+                setTimeout(() => {
+                    bar.classList.add("is-animating");  // <-- activates glow/gradient
+                    bar.style.width = width;
+                }, i * 300); // Delay: 0ms, 300ms, 600ms...
+            });
 
-                // Start number animation
-                animatePercentageNumbers();
+            // 🔥 delayed number count sync
+            setTimeout(animateSkillPercentages, 200);
 
-                observer.disconnect(); // run ONE time only
-            }
+            observer.disconnect(); // only run once
         });
-    });
+    }, { threshold: 0.35 });
 
-    if (skillsSection) observer.observe(skillsSection);
+    observer.observe(skillSection);
 });
+
