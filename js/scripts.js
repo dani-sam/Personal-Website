@@ -52,3 +52,24 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+// ====================================================================
+// 🔥 Skill Bar Scroll Animation (Added by ChatGPT) 
+// ====================================================================
+document.addEventListener("DOMContentLoaded", () => {
+
+    const bars = document.querySelectorAll(".progress-bar");
+    const skillsSection = document.querySelector(".skills");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                bars.forEach(bar => {
+                    bar.style.width = bar.dataset.progress + "%";  // animation triggers here
+                });
+                observer.disconnect(); // run only once
+            }
+        });
+    });
+
+    if (skillsSection) observer.observe(skillsSection);
+});
