@@ -53,8 +53,30 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 // ====================================================================
-// 🔥 Skill Bar Scroll Animation (Added by ChatGPT) 
-// ====================================================================
+// 🔥 SKILL BAR + % COUNTER ANIMATION
+// ==================================================================== //
+
+// Animate percentage numbers 0 → target
+function animatePercentageNumbers() {
+    const values = document.querySelectorAll(".val");
+
+    values.forEach(val => {
+        let target = +val.getAttribute("data-target");
+        let current = 0;
+        let speed = target / 120; // slower or faster count
+
+        let counter = setInterval(() => {
+            current += speed;
+            if (current >= target) {
+                current = target;
+                clearInterval(counter);
+            }
+            val.textContent = Math.floor(current) + "%";
+        }, 20);
+    });
+}
+
+// Animate skill progress bars
 document.addEventListener("DOMContentLoaded", () => {
 
     const bars = document.querySelectorAll(".progress-bar");
@@ -63,10 +85,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+
+                // Fill bars smoothly
                 bars.forEach(bar => {
-                    bar.style.width = bar.dataset.progress + "%";  // animation triggers here
+                    bar.style.width = bar.dataset.progress + "%";
                 });
-                observer.disconnect(); // run only once
+
+                // Start number animation
+                animatePercentageNumbers();
+
+                observer.disconnect(); // run ONE time only
             }
         });
     });
