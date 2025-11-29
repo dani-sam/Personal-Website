@@ -5509,17 +5509,46 @@ fieldset:disabled .btn {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #1abc9c;
+
+  /* Gradient base (static until .is-animating) */
+  background-image: linear-gradient(90deg, #0f766e, #22c55e, #1abc9c);
+  background-size: 200% 100%;
+  box-shadow: 0 0 0 rgba(34, 197, 94, 0);
+
+
   width: 0%;
-  transition: width 6s ease;
+  transition: width 6s ease; /* super slow fill */
 }
+
+/* When JS adds this class → animate gradient + glow */
+.progress-bar.is-animating {
+  animation: skillGlow 3s ease-in-out infinite;
+}
+
+@keyframes skillGlow {
+  0% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 4px rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
+  }
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 4px rgba(34, 197, 94, 0.4);
+  }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .progress-bar {
     transition: none;
+    animation: none;
   }
 }
 
+/* You can keep these if you still use striped/animated variants elsewhere */
 .progress-bar-striped {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 1rem 1rem;
