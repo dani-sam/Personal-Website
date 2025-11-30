@@ -11714,39 +11714,6 @@ html {
   color: #6c757d;
 }
 
-.masthead {
-  padding-top: calc(6rem + 74px);
-  padding-bottom: 6rem;
-}
-
-.masthead .masthead-heading {
-  font-size: 2.75rem;
-  line-height: 2.75rem;
-}
-
-.masthead .masthead-subheading {
-  font-size: 1.25rem;
-}
-
-.masthead .masthead-avatar {
-  width: 15rem;
-}
-
-@media (min-width: 992px) {
-  .masthead {
-    padding-top: calc(6rem + 104px);
-    padding-bottom: 6rem;
-  }
-
-  .masthead .masthead-heading {
-    font-size: 4rem;
-    line-height: 3.5rem;
-  }
-
-  .masthead .masthead-subheading {
-    font-size: 1.5rem;
-  }
-}
 
 .portfolio .portfolio-item {
   cursor: pointer;
@@ -12097,4 +12064,96 @@ html {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ======================================================
+   HERO / MASTHEAD – FLAT THEME COLOR + ANIMATION + UI
+====================================================== */
+
+.masthead {
+  background: #18C4A6 !important;      /* YOUR SELECTED COLOR */
+  padding-top: calc(6rem + 74px);       /* Space for navbar */
+  padding-bottom: 6rem;
+  text-align: center;
+  animation: heroFadeUp .9s ease-out both; /* Fade-up on load */
+}
+
+/* Avatar Image — Soft, Clean, Focused */
+.masthead .masthead-avatar {
+  width: 15rem;
+  border-radius: 1rem;                  /* Smooth rounded frame */
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+/* Hover Boost — subtle professional motion */
+.masthead .masthead-avatar:hover {
+  transform: scale(1.035);
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
+}
+
+/* NAME — Bold and centered */
+.masthead .masthead-heading {
+  font-size: 2.75rem;
+  line-height: 2.75rem;
+  font-weight: 700;
+  margin-top: .8rem;
+  letter-spacing: 1px;
+}
+
+/* Subtitle under name */
+.masthead .masthead-subheading {
+  font-size: 1.25rem;
+  opacity: .9;
+  max-width: 550px;
+  margin-inline: auto;
+}
+
+/* Desktop & large displays scaling */
+@media (min-width: 992px) {
+  .masthead {
+    padding-top: calc(6rem + 104px);
+    padding-bottom: 6rem;
+  }
+  .masthead .masthead-heading {
+    font-size: 4rem;
+    line-height: 3.5rem;
+  }
+  .masthead .masthead-subheading {
+    font-size: 1.5rem;
+  }
+}
+
+/* ROLE BADGE BELOW AVATAR */
+.hero-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 14px;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(0,0,0,.14);
+}
+
+/* Quote card styling */
+.hero-quote-box {
+  margin-top: .8rem;
+  padding: .7rem 1.2rem;
+  max-width: 640px;
+  margin-inline: auto;
+  background: rgba(0,0,0,.14);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+#quotes { font-size: .9rem; opacity: .95; margin-bottom: .3rem; }
+#quotes-name { font-size: .78rem; opacity: .85; }
+
+/* Fade-up animation */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
 
