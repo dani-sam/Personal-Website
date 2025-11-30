@@ -94,4 +94,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     observer.observe(skillSection);
 });
+// Scroll reveal for .reveal-on-scroll elements
+document.addEventListener("DOMContentLoaded", () => {
+    const revealElems = document.querySelectorAll(".reveal-on-scroll");
+    if (revealElems.length === 0) return;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.25 });
+
+    revealElems.forEach(el => observer.observe(el));
+});
+
 
